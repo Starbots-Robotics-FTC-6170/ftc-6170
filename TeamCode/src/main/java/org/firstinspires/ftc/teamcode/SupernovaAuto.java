@@ -3,9 +3,9 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-@Autonomous(name="NoName Auto", group="NoName")
-public class NoNameAuto extends OpMode {
-    NoName bot = new NoName();
+@Autonomous(name="Supernova Auto", group="NoName")
+public class SupernovaAuto extends OpMode {
+    Supernova bot = new Supernova();
 
     /*
      * Code to run ONCE when the driver hits INIT
