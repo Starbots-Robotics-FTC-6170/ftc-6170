@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name="Supernova Tank", group="NoName")
+@TeleOp(name="Supernova Tank", group="Supernova")
 public class SupernovaTank extends OpMode {
     Supernova bot = new Supernova();
 
@@ -42,5 +42,4 @@ public class SupernovaTank extends OpMode {
     @Override
     public void stop() {
     }
-
 }
