@@ -3,9 +3,9 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name="Supernova Tank", group="Supernova")
+@TeleOp(name = "Supernova Tank", group = "Supernova")
 public class SupernovaTank extends OpMode {
-    Supernova bot = new Supernova();
+    private Supernova bot = new Supernova();
 
     /*
      * Code to run ONCE when the driver hits INIT
