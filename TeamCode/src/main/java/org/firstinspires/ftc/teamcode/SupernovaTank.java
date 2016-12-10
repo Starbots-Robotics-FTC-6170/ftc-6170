@@ -34,6 +34,7 @@ public class SupernovaTank extends OpMode {
      */
     @Override
     public void loop() {
+        bot.move(-gamepad1.left_stick_y, -gamepad1.right_stick_y);
     }
 
     /*
