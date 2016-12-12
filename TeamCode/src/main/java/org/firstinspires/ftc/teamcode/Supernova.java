@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Supernova {
-    DcMotor leftDrive;
-    DcMotor rightDrive;
+    private DcMotor leftDrive;
+    private DcMotor rightDrive;
 
     public void init(HardwareMap hardwareMap) {
         leftDrive = hardwareMap.dcMotor.get("leftDrive");
@@ -15,5 +15,17 @@ public class Supernova {
     public void move(double left, double right) {
         leftDrive.setPower(left);
         rightDrive.setPower(right);
+    }
+
+    public void scissor(double position) {
+        // code to move lift to position
+    }
+
+    public void sweep(double power) {
+        // code to move sweeper
+    }
+
+    public void shoot() {
+        // code to shoot one ball
     }
 }
