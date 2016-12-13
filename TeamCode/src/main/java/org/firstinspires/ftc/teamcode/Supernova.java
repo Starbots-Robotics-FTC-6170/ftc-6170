@@ -4,17 +4,25 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Supernova {
-    private DcMotor leftDrive;
-    private DcMotor rightDrive;
+    private DcMotor leftDriveM;
+    private DcMotor rightDriveM;
+    private DcMotor scissorsM;
+    private DcMotor scoopM;
+    private DcMotor sweepM;
+    private DcMotor shootM;
 
     public void init(HardwareMap hardwareMap) {
-        leftDrive = hardwareMap.dcMotor.get("leftDrive");
-        rightDrive = hardwareMap.dcMotor.get("rightDrive");
+        leftDriveM = hardwareMap.dcMotor.get("leftDrive");
+        rightDriveM = hardwareMap.dcMotor.get("rightDrive");
+        scissorsM = hardwareMap.dcMotor.get ("scissors");
+        scoopM = hardwareMap.dcMotor.get("scoop");
+        sweepM = hardwareMap.dcMotor.get("sweep");
+        shootM = hardwareMap.dcMotor.get("shoot");
     }
 
     public void move(double left, double right) {
-        leftDrive.setPower(left);
-        rightDrive.setPower(right);
+        leftDriveM.setPower(left);
+        rightDriveM.setPower(right);
     }
 
     public void scissor(double position) {
