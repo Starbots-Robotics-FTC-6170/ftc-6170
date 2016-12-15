@@ -21,16 +21,21 @@ public class Supernova {
     }
 
     public void move(double left, double right) {
+        // set motor power based on desired movement
         leftDriveM.setPower(left);
         rightDriveM.setPower(right);
     }
 
-    public void scissor(double position) {
+    public void scissor(double power) {
         // code to move lift to position
     }
 
     public void sweep(double power) {
         // code to move sweeper
+    }
+
+    public void scoop (double power)  {
+        // code to power scoop
     }
 
     public void shoot() {
