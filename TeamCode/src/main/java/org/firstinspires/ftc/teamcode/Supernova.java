@@ -20,10 +20,23 @@ public class Supernova {
         shootM = hardwareMap.dcMotor.get("shoot");
     }
 
-    public void move(double left, double right) {
+    public void drive(double left, double right) {
         // set motor power based on desired movement
         leftDriveM.setPower(left);
         rightDriveM.setPower(right);
+    }
+
+    public double ease(int current, int start) {
+        if (current > start)
+            return 1.0;
+
+        double ratio = 1.0 - current/start;
+
+        return (1.0 - ratio)*(1.0 + ratio);
+    }
+
+    public void move(double left, double right) {
+        // set motor power based on distance traveled
     }
 
     public void scissor(double power) {
