@@ -3,8 +3,10 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-@Autonomous(name = "Supernova Auto", group = "Supernova")
-public class SupernovaAuto extends OpMode {
+@Autonomous(name = "Supernova Shoot One Park Corner", group = "Supernova")
+public class SupernovaShootOneParkCorner extends OpMode {
+    private double WALL_TO_CENTER_VORTEX = 1.0;
+
     private Supernova bot = new Supernova();
 
     /*
@@ -27,6 +29,7 @@ public class SupernovaAuto extends OpMode {
      */
     @Override
     public void start() {
+        bot.move(WALL_TO_CENTER_VORTEX, WALL_TO_CENTER_VORTEX);
     }
 
     /*

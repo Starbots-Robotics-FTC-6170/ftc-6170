@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Supernova {
+    private final long ENCODER_TO_METER = 1000;
+
     private DcMotor leftDriveM;
     private DcMotor rightDriveM;
     private DcMotor scissorsM;
