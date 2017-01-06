@@ -5,7 +5,14 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 @Autonomous(name = "Supernova Shoot One Park Corner", group = "Supernova")
 public class SupernovaShootOneParkCorner extends OpMode {
-    private double WALL_TO_CENTER_VORTEX = 1.0;
+    private double WALL_TO_CENTER_VORTEX = 0.80;
+    private double TURN_TOWARD_HOOP = 0.20;
+    private double MOVE_TO_HOOP = 0.20;
+    private double BUMP_BALL = 0.10;
+    private double TURN_AWAY_FROM_HOOP = .21;
+    private double FORWARD_TOWARD_CORNER_VORTEX = .90;
+    private double TURN_TOWARD_CORNER_VORTEX = .17;
+    private double DRIVE_ONTO_CORNER_VORTEX = .68;
 
     private Supernova bot = new Supernova();
 
@@ -30,6 +37,14 @@ public class SupernovaShootOneParkCorner extends OpMode {
     @Override
     public void start() {
         bot.move(WALL_TO_CENTER_VORTEX, WALL_TO_CENTER_VORTEX);
+        bot.move(TURN_TOWARD_HOOP, -TURN_TOWARD_HOOP);
+        bot.move(BUMP_BALL, BUMP_BALL);
+        bot.move(MOVE_TO_HOOP, MOVE_TO_HOOP);
+        bot.move(TURN_AWAY_FROM_HOOP, -TURN_AWAY_FROM_HOOP);
+        bot.move(FORWARD_TOWARD_CORNER_VORTEX, FORWARD_TOWARD_CORNER_VORTEX);
+        bot.move(TURN_TOWARD_CORNER_VORTEX, -TURN_TOWARD_CORNER_VORTEX);
+        bot.move(DRIVE_ONTO_CORNER_VORTEX, DRIVE_ONTO_CORNER_VORTEX);
+
     }
 
     /*
