@@ -21,7 +21,7 @@ public class SupernovaShootOneParkCorner extends OpMode {
      */
     @Override
     public void init() {
-        bot.init(hardwareMap);
+        bot.init(hardwareMap, telemetry);
     }
 
     /*
