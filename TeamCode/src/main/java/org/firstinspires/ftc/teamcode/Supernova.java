@@ -99,7 +99,7 @@ public class Supernova {
         telemetry.addData("sweep:power", power);
 
         // code to move sweeper
-        scissorM.setPower(power);
+        sweepM.setPower(power);
     }
 
     public void scoop(double power)  {
