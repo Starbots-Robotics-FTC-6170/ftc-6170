@@ -6,12 +6,15 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Supernova {
-    private final long ENCODER_TO_METER = 1000;
-    private final double EASE_DRIVE = 2000;
+    private final double METER_TO_ENCODER = 1000;
+    private final double EASE_DRIVE = 0.1;
+    private final double POWER_DRIVE = 1.0;
+    private final double POWER_SHOOT = 1.0;
+    private final double EPSILON = 0.03;
 
     private DcMotor leftDriveM;
     private DcMotor rightDriveM;
-    private DcMotor scissorsM;
+    private DcMotor scissorM;
     private DcMotor scoopM;
     private DcMotor sweepM;
     private DcMotor shootM;
@@ -21,7 +24,7 @@ public class Supernova {
     public void init(HardwareMap hardwareMap, Telemetry t) {
         leftDriveM = hardwareMap.dcMotor.get("Left");
         rightDriveM = hardwareMap.dcMotor.get("Right");
-        scissorsM = hardwareMap.dcMotor.get ("Scissor");
+        scissorM = hardwareMap.dcMotor.get ("Scissor");
         scoopM = hardwareMap.dcMotor.get("Scoop");
         sweepM = hardwareMap.dcMotor.get("Sweep");
         shootM = hardwareMap.dcMotor.get("Shoot");
@@ -30,16 +33,16 @@ public class Supernova {
     }
 
     public void drive(double left, double right) {
-        // set motor power based on desired movement
-        leftDriveM.setPower(left);
-        rightDriveM.setPower(right);
-
         // log data
         telemetry.addData("drive:left", left);
         telemetry.addData("drive:right", right);
+
+        // set motor power based on desired movement
+        leftDriveM.setPower(-left);
+        rightDriveM.setPower(right);
     }
 
-    public double ease(int current, int start) {
+    public double ease(double current, double start) {
         if (current > start)
             return 1.0;
 
@@ -49,38 +52,78 @@ public class Supernova {
     }
 
     public void move(double left, double right) {
-        // set motor power based on distance traveled
-
         // log data
         telemetry.addData("move:left", left);
         telemetry.addData("move:right", right);
+
+        // set motor power based on distance traveled
+        int startLeft = leftDriveM.getCurrentPosition();
+        int startRight = rightDriveM.getCurrentPosition();
+
+        // set initial power
+        double leftPower = POWER_DRIVE;
+        double rightPower = POWER_DRIVE;
+
+        // loop until motors are no longer powered
+        while (leftPower != 0.0 && rightPower != 0.0) {
+            // get relative position of motors
+            double leftPos = (leftDriveM.getCurrentPosition() - startLeft)/METER_TO_ENCODER;
+            double rightPos = (rightDriveM.getCurrentPosition() - startRight)/METER_TO_ENCODER;
+
+            // get remaining distance for motors
+            double leftRemaining = Math.abs(left - leftPos);
+            double rightRemaining = Math.abs(right - rightPos);
+
+            // stop motors when they are close enough to target
+            if (leftRemaining < EPSILON)
+                leftPower = 0.0;
+            if (rightRemaining < EPSILON)
+                rightPower = 0.0;
+
+            // set power based on easing
+            leftDriveM.setPower(-ease(leftRemaining, EASE_DRIVE)*Math.copySign(leftPower, left));
+            rightDriveM.setPower(ease(rightRemaining, EASE_DRIVE)*Math.copySign(rightPower, right));
+        }
     }
 
     public void scissor(double power) {
-        // code to move lift to position
-
         // log data
         telemetry.addData("scissor:power", power);
+
+        // code to move lift
+        scissorM.setPower(power);
     }
 
     public void sweep(double power) {
-        // code to move sweeper
-
         // log data
         telemetry.addData("sweep:power", power);
+
+        // code to move sweeper
+        scissorM.setPower(power);
     }
 
     public void scoop(double power)  {
-        // code to power scoop
-
         // log data
         telemetry.addData("scoop:power", power);
+
+        // code to power scoop
+        scoopM.setPower(power);
     }
 
     public void shoot() {
-        // code to shoot one ball
-
         // log data
         telemetry.addData("shoot", "go!");
+
+        // code to shoot one ball
+        shootM.setPower(POWER_SHOOT);
+
+        // wait for ball
+        try {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e) {}
+
+        // stop motor
+        shootM.setPower(0.0);
     }
 }

@@ -9,10 +9,10 @@ public class SupernovaShootOneParkCorner extends OpMode {
     private double TURN_TOWARD_HOOP = 0.20;
     private double MOVE_TO_HOOP = 0.20;
     private double BUMP_BALL = 0.10;
-    private double TURN_AWAY_FROM_HOOP = .21;
-    private double FORWARD_TOWARD_CORNER_VORTEX = .90;
-    private double TURN_TOWARD_CORNER_VORTEX = .17;
-    private double DRIVE_ONTO_CORNER_VORTEX = .68;
+    private double TURN_AWAY_FROM_HOOP = 0.21;
+    private double FORWARD_TOWARD_CORNER_VORTEX = 0.90;
+    private double TURN_TOWARD_CORNER_VORTEX = 0.17;
+    private double DRIVE_ONTO_CORNER_VORTEX = 0.68;
 
     private Supernova bot = new Supernova();
 
