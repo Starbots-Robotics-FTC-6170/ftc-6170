@@ -44,7 +44,6 @@ public class SupernovaShootOneParkCorner extends OpMode {
         bot.move(FORWARD_TOWARD_CORNER_VORTEX, FORWARD_TOWARD_CORNER_VORTEX);
         bot.move(TURN_TOWARD_CORNER_VORTEX, -TURN_TOWARD_CORNER_VORTEX);
         bot.move(DRIVE_ONTO_CORNER_VORTEX, DRIVE_ONTO_CORNER_VORTEX);
-
     }
 
     /*

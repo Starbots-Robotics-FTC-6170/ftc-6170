@@ -35,7 +35,8 @@ public class SupernovaTank extends OpMode {
     @Override
     public void loop() {
         bot.drive(-gamepad1.left_stick_y, -gamepad1.right_stick_y);
-        bot.sweep(gamepad2.right_trigger - gamepad2.left_trigger);
+        bot.sweep(gamepad2.right_trigger);
+        bot.sweep(-gamepad2.left_trigger);
         bot.scissor(-gamepad2.left_stick_y);
         bot.scoop(gamepad2.right_stick_y);
 

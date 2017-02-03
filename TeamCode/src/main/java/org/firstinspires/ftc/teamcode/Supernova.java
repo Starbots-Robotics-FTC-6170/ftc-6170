@@ -11,6 +11,7 @@ public class Supernova {
     private final double POWER_DRIVE = 1.0;
     private final double POWER_SHOOT = 1.0;
     private final double EPSILON = 0.03;
+    private final double POWER_SWEEP = -1.0;
 
     private DcMotor leftDriveM;
     private DcMotor rightDriveM;
@@ -99,7 +100,7 @@ public class Supernova {
         telemetry.addData("sweep:power", power);
 
         // code to move sweeper
-        sweepM.setPower(power);
+        sweepM.setPower(POWER_SWEEP);
     }
 
     public void scoop(double power)  {
