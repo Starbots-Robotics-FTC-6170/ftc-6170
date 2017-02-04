@@ -33,6 +33,9 @@ public class Supernova {
         shootM = hardwareMap.dcMotor.get("Shoot");
 
         telemetry = t;
+
+        // log data
+        telemetry.addData("shoot", "stopped");
     }
 
     public void drive(double left, double right) {
@@ -115,7 +118,7 @@ public class Supernova {
 
     public void shoot() {
         // log data
-        telemetry.addData("shoot", "go!");
+        telemetry.addData("shoot", "running");
 
         // code to shoot one ball
         shootM.setPower(POWER_SHOOT);
@@ -130,6 +133,6 @@ public class Supernova {
         shootM.setPower(0.0);
 
         // log data
-        telemetry.addData("shoot", "done!");
+        telemetry.addData("shoot", "stopped");
     }
 }
