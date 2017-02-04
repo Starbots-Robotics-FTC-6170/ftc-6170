@@ -9,9 +9,11 @@ public class Supernova {
     private final double METER_TO_ENCODER = 1000;
     private final double EASE_DRIVE = 0.1;
     private final double POWER_DRIVE = 1.0;
+    private final double POWER_SCISSOR = 1.0;
+    private final double POWER_SCOOP = 0.2;
+    private final double POWER_SWEEP = 1.0;
     private final double POWER_SHOOT = 1.0;
     private final double EPSILON = 0.03;
-    private final double POWER_SWEEP = -1.0;
 
     private DcMotor leftDriveM;
     private DcMotor rightDriveM;
@@ -39,8 +41,8 @@ public class Supernova {
         telemetry.addData("drive:right", right);
 
         // set motor power based on desired movement
-        leftDriveM.setPower(-left);
-        rightDriveM.setPower(right);
+        leftDriveM.setPower(-left*POWER_DRIVE);
+        rightDriveM.setPower(right*POWER_DRIVE);
     }
 
     public double ease(double current, double start) {
@@ -92,7 +94,7 @@ public class Supernova {
         telemetry.addData("scissor:power", power);
 
         // code to move lift
-        scissorM.setPower(power);
+        scissorM.setPower(power*POWER_SCISSOR);
     }
 
     public void sweep(double power) {
@@ -100,7 +102,7 @@ public class Supernova {
         telemetry.addData("sweep:power", power);
 
         // code to move sweeper
-        sweepM.setPower(POWER_SWEEP);
+        sweepM.setPower(-power*POWER_SWEEP);
     }
 
     public void scoop(double power)  {
@@ -108,7 +110,7 @@ public class Supernova {
         telemetry.addData("scoop:power", power);
 
         // code to power scoop
-        scoopM.setPower(power);
+        scoopM.setPower(-power*POWER_SCOOP);
     }
 
     public void shoot() {
