@@ -128,5 +128,8 @@ public class Supernova {
 
         // stop motor
         shootM.setPower(0.0);
+
+        // log data
+        telemetry.addData("shoot", "done!");
     }
 }
