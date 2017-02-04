@@ -60,7 +60,7 @@ public class Supernova {
         telemetry.addData("move:right", right);
 
         // set motor power based on distance traveled
-        int startLeft = leftDriveM.getCurrentPosition();
+        int startLeft = -leftDriveM.getCurrentPosition();
         int startRight = rightDriveM.getCurrentPosition();
 
         // set initial power
@@ -70,7 +70,7 @@ public class Supernova {
         // loop until motors are no longer powered
         while (leftPower != 0.0 || rightPower != 0.0) {
             // get relative position of motors
-            double leftPos = (leftDriveM.getCurrentPosition() - startLeft)/METER_TO_ENCODER;
+            double leftPos = (-leftDriveM.getCurrentPosition() - startLeft)/METER_TO_ENCODER;
             double rightPos = (rightDriveM.getCurrentPosition() - startRight)/METER_TO_ENCODER;
 
             // get remaining distance for motors
