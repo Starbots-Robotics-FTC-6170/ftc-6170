@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @Autonomous(name = "Supernova Shoot One Park Corner", group = "Supernova")
 public class SupernovaShootOneParkCorner extends OpMode {
@@ -21,7 +23,7 @@ public class SupernovaShootOneParkCorner extends OpMode {
      */
     @Override
     public void init() {
-        bot.init(hardwareMap, telemetry);
+        bot.init(hardwareMap, this);
     }
 
     /*
@@ -29,6 +31,7 @@ public class SupernovaShootOneParkCorner extends OpMode {
      */
     @Override
     public void init_loop() {
+
     }
 
     /*
@@ -36,14 +39,6 @@ public class SupernovaShootOneParkCorner extends OpMode {
      */
     @Override
     public void start() {
-        bot.move(WALL_TO_CENTER_VORTEX, WALL_TO_CENTER_VORTEX);
-        bot.move(TURN_TOWARD_HOOP, -TURN_TOWARD_HOOP);
-        bot.move(BUMP_BALL, BUMP_BALL);
-        bot.move(MOVE_TO_HOOP, MOVE_TO_HOOP);
-        bot.move(TURN_AWAY_FROM_HOOP, -TURN_AWAY_FROM_HOOP);
-        bot.move(FORWARD_TOWARD_CORNER_VORTEX, FORWARD_TOWARD_CORNER_VORTEX);
-        bot.move(TURN_TOWARD_CORNER_VORTEX, -TURN_TOWARD_CORNER_VORTEX);
-        bot.move(DRIVE_ONTO_CORNER_VORTEX, DRIVE_ONTO_CORNER_VORTEX);
     }
 
     /*
@@ -51,6 +46,14 @@ public class SupernovaShootOneParkCorner extends OpMode {
      */
     @Override
     public void loop() {
+        bot.move(-WALL_TO_CENTER_VORTEX, -WALL_TO_CENTER_VORTEX);
+        bot.move(TURN_TOWARD_HOOP, -TURN_TOWARD_HOOP);
+        bot.move(-MOVE_TO_HOOP, -MOVE_TO_HOOP);
+        bot.move(-BUMP_BALL, -BUMP_BALL);
+        bot.move(TURN_AWAY_FROM_HOOP, -TURN_AWAY_FROM_HOOP);
+        bot.move(-FORWARD_TOWARD_CORNER_VORTEX, -FORWARD_TOWARD_CORNER_VORTEX);
+        bot.move(TURN_TOWARD_CORNER_VORTEX, -TURN_TOWARD_CORNER_VORTEX);
+        bot.move(-DRIVE_ONTO_CORNER_VORTEX, -DRIVE_ONTO_CORNER_VORTEX);
     }
 
     /*

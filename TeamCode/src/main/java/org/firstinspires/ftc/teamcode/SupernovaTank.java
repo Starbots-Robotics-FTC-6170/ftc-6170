@@ -12,7 +12,7 @@ public class SupernovaTank extends OpMode {
      */
     @Override
     public void init() {
-        bot.init(hardwareMap, telemetry);
+        bot.init(hardwareMap, this);
     }
 
     /*

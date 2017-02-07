@@ -12,7 +12,7 @@ public class SupernovaAuto extends OpMode {
      */
     @Override
     public void init() {
-        bot.init(hardwareMap, telemetry);
+        bot.init(hardwareMap, this);
     }
 
     /*
@@ -34,6 +34,9 @@ public class SupernovaAuto extends OpMode {
      */
     @Override
     public void loop() {
+        //program
+
+        requestOpModeStop();
     }
 
     /*
