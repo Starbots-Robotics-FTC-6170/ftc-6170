@@ -29,6 +29,9 @@ public class SupernovaShootOneParkCorner extends LinearOpMode {
 
         bot.move(-WALL_TO_CENTER_VORTEX, -WALL_TO_CENTER_VORTEX);
         bot.move(TURN_TOWARD_HOOP, -TURN_TOWARD_HOOP);
+        bot.shoot(true);
+        sleep(1000);
+        bot.shoot(false);
         //bot.move(-MOVE_TO_HOOP, -MOVE_TO_HOOP);
         bot.move(-BUMP_BALL, -BUMP_BALL);
         bot.move(TURN_AWAY_FROM_HOOP, -TURN_AWAY_FROM_HOOP);
