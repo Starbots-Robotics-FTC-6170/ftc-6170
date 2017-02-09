@@ -12,7 +12,7 @@ public class SupernovaTank extends OpMode {
      */
     @Override
     public void init() {
-        bot.init(hardwareMap, this);
+        bot.init(hardwareMap, telemetry);
     }
 
     /*
@@ -38,9 +38,7 @@ public class SupernovaTank extends OpMode {
         bot.sweep(gamepad2.right_trigger + -gamepad2.left_trigger);
         bot.scissor(-gamepad2.left_stick_y);
         bot.scoop(-gamepad2.right_stick_y);
-
-        if (gamepad2.right_bumper)
-            bot.shoot();
+        bot.shoot(gamepad2.right_bumper);
     }
 
     /*

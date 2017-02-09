@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Supernova {
     private final double METER_TO_ENCODER = 7000;
@@ -22,9 +22,9 @@ public class Supernova {
     private DcMotor sweepM;
     private DcMotor shootM;
 
-    private OpMode opmode;
+    private Telemetry telemetry;
 
-    public void init(HardwareMap hardwareMap, OpMode op) {
+    public void init(HardwareMap hardwareMap, Telemetry t) {
         leftDriveM = hardwareMap.dcMotor.get("Left");
         rightDriveM = hardwareMap.dcMotor.get("Right");
         scissorM = hardwareMap.dcMotor.get ("Scissor");
@@ -32,16 +32,16 @@ public class Supernova {
         sweepM = hardwareMap.dcMotor.get("Sweep");
         shootM = hardwareMap.dcMotor.get("Shoot");
 
-        opmode = op;
+        telemetry = t;
 
         // log data
-        opmode.telemetry.addData("shoot", "stopped");
+        telemetry.addData("shoot", "stopped");
     }
 
     public void drive(double left, double right) {
         // log data
-        opmode.telemetry.addData("drive:left", left);
-        opmode.telemetry.addData("drive:right", right);
+        telemetry.addData("drive:left", left);
+        telemetry.addData("drive:right", right);
 
         // set motor power based on desired movement
         leftDriveM.setPower(-left*POWER_DRIVE);
@@ -59,8 +59,8 @@ public class Supernova {
 
     public void move(double left, double right) {
         // log data
-        opmode.telemetry.addData("move:left", left);
-        opmode.telemetry.addData("move:right", right);
+        telemetry.addData("move:left", left);
+        telemetry.addData("move:right", right);
 
         // set motor power based on distance traveled
         int startLeft = -leftDriveM.getCurrentPosition();
@@ -94,7 +94,7 @@ public class Supernova {
 
     public void scissor(double power) {
         // log data
-        opmode.telemetry.addData("scissor:power", power);
+        telemetry.addData("scissor:power", power);
 
         // code to move lift
         scissorM.setPower(power*POWER_SCISSOR);
@@ -102,7 +102,7 @@ public class Supernova {
 
     public void sweep(double power) {
         // log data
-        opmode.telemetry.addData("sweep:power", power);
+        telemetry.addData("sweep:power", power);
 
         // code to move sweeper
         sweepM.setPower(power*POWER_SWEEP);
@@ -110,29 +110,25 @@ public class Supernova {
 
     public void scoop(double power)  {
         // log data
-        opmode.telemetry.addData("scoop:power", power);
+        telemetry.addData("scoop:power", power);
 
         // code to power scoop
         scoopM.setPower(-power*POWER_SCOOP);
     }
 
-    public void shoot() {
-        // log data
-        opmode.telemetry.addData("shoot", "running");
+    public void shoot(boolean run) {
+        if (run) {
+            // log data
+            telemetry.addData("shoot", "running");
 
-        // code to shoot one ball
-        shootM.setPower(POWER_SHOOT);
-
-        // wait for ball
-        try {
-            Thread.sleep(1000);
+            shootM.setPower(POWER_SHOOT);
         }
-        catch (InterruptedException e) {}
+        else {
+            // log data
+            telemetry.addData("shoot", "stopped");
 
-        // stop motor
-        shootM.setPower(0.0);
-
-        // log data
-        opmode.telemetry.addData("shoot", "stopped");
+            // stop motor
+            shootM.setPower(0.0);
+        }
     }
 }
