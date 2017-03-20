@@ -8,11 +8,11 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Supernova {
     private final double METER_TO_ENCODER = 7000;
     private final double EASE_DRIVE = 0.1;
-    private final double POWER_DRIVE = 1.0;
+    private final double POWER_DRIVE = 0.5;
     private final double POWER_SCISSOR = 1.0;
     private final double POWER_SCOOP = 0.2;
     private final double POWER_SWEEP = 1.0;
-    private final double POWER_SHOOT = 1.0;
+    private final double POWER_SHOOT = -1.0;
     private final double EPSILON = 0.03;
 
     private DcMotor leftDriveM;
@@ -36,12 +36,14 @@ public class Supernova {
 
         // log data
         telemetry.addData("shoot", "stopped");
+        telemetry.update();
     }
 
     public void drive(double left, double right) {
         // log data
         telemetry.addData("drive:left", left);
         telemetry.addData("drive:right", right);
+        telemetry.update();
 
         // set motor power based on desired movement
         leftDriveM.setPower(-left*POWER_DRIVE);
@@ -61,6 +63,7 @@ public class Supernova {
         // log data
         telemetry.addData("move:left", left);
         telemetry.addData("move:right", right);
+        telemetry.update();
 
         // set motor power based on distance traveled
         int startLeft = -leftDriveM.getCurrentPosition();
@@ -95,6 +98,7 @@ public class Supernova {
     public void scissor(double power) {
         // log data
         telemetry.addData("scissor:power", power);
+        telemetry.update();
 
         // code to move lift
         scissorM.setPower(power*POWER_SCISSOR);
@@ -103,6 +107,7 @@ public class Supernova {
     public void sweep(double power) {
         // log data
         telemetry.addData("sweep:power", power);
+        telemetry.update();
 
         // code to move sweeper
         sweepM.setPower(power*POWER_SWEEP);
@@ -111,6 +116,7 @@ public class Supernova {
     public void scoop(double power)  {
         // log data
         telemetry.addData("scoop:power", power);
+        telemetry.update();
 
         // code to power scoop
         scoopM.setPower(-power*POWER_SCOOP);
@@ -120,15 +126,33 @@ public class Supernova {
         if (run) {
             // log data
             telemetry.addData("shoot", "running");
+            telemetry.update();
 
             shootM.setPower(POWER_SHOOT);
         }
         else {
             // log data
             telemetry.addData("shoot", "stopped");
+            telemetry.update();
 
             // stop motor
             shootM.setPower(0.0);
+        }
+    }
+
+
+    public void sweepAuto(boolean b) {
+        if (b) {
+            //log data
+            telemetry.addData("sweep", "running");
+            sweepM.setPower(POWER_SWEEP);
+        }
+        else{
+            //log data
+            telemetry.addData("sweep", "stopped");
+
+            //stop motor
+            sweepM.setPower(0.0);
         }
     }
 }
