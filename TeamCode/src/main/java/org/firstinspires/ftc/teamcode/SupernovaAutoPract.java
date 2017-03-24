@@ -32,10 +32,7 @@ public class SupernovaAutoPract extends LinearOpMode {
         bot.move(-TURN_TOWARD_CORNER_VORTEX, TURN_TOWARD_CORNER_VORTEX);
         bot.move(-DRIVE_ONTO_CORNER_VORTEX, -DRIVE_ONTO_CORNER_VORTEX);
         bot.sweep(1);
-        try {
-            Thread.sleep(1000);
-        } catch(InterruptedException e){
-        }
+        sleep(1000);
         bot.sweep(0);
 
     }

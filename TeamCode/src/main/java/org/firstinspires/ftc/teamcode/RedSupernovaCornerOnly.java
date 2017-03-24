@@ -22,7 +22,7 @@ public class RedSupernovaCornerOnly extends LinearOpMode {
         waitForStart();
 
         bot.move(-AWAY_FROM_WALL, -AWAY_FROM_WALL);
-        bot.move(-TURN_CORNER, TURN_CORNER);
+        bot.move(TURN_CORNER, -TURN_CORNER);
         bot.move(-PARK_VORTEX, -PARK_VORTEX);
         bot.sweepAuto(true);
         sleep(2000);
