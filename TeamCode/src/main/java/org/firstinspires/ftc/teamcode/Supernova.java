@@ -9,33 +9,21 @@ public class Supernova {
     private final double METER_TO_ENCODER = 7000;
     private final double EASE_DRIVE = 0.1;
     private final double POWER_DRIVE = 0.5;
-    private final double POWER_SCISSOR = 1.0;
-    private final double POWER_SCOOP = 0.2;
-    private final double POWER_SWEEP = 1.0;
-    private final double POWER_SHOOT = -1.0;
     private final double EPSILON = 0.03;
 
     private DcMotor leftDriveM;
     private DcMotor rightDriveM;
-    private DcMotor scissorM;
-    private DcMotor scoopM;
-    private DcMotor sweepM;
-    private DcMotor shootM;
 
     private Telemetry telemetry;
 
     public void init(HardwareMap hardwareMap, Telemetry t) {
         leftDriveM = hardwareMap.dcMotor.get("Left");
         rightDriveM = hardwareMap.dcMotor.get("Right");
-        scissorM = hardwareMap.dcMotor.get ("Scissor");
-        scoopM = hardwareMap.dcMotor.get("Scoop");
-        sweepM = hardwareMap.dcMotor.get("Sweep");
-        shootM = hardwareMap.dcMotor.get("Shoot");
 
         telemetry = t;
 
         // log data
-        telemetry.addData("shoot", "stopped");
+        telemetry.addData("status", "inited");
         telemetry.update();
     }
 
@@ -92,67 +80,6 @@ public class Supernova {
             // set power based on easing
             leftDriveM.setPower(-ease(leftRemaining, EASE_DRIVE)*Math.copySign(leftPower, left));
             rightDriveM.setPower(ease(rightRemaining, EASE_DRIVE)*Math.copySign(rightPower, right));
-        }
-    }
-
-    public void scissor(double power) {
-        // log data
-        telemetry.addData("scissor:power", power);
-        telemetry.update();
-
-        // code to move lift
-        scissorM.setPower(power*POWER_SCISSOR);
-    }
-
-    public void sweep(double power) {
-        // log data
-        telemetry.addData("sweep:power", power);
-        telemetry.update();
-
-        // code to move sweeper
-        sweepM.setPower(power*POWER_SWEEP);
-    }
-
-    public void scoop(double power)  {
-        // log data
-        telemetry.addData("scoop:power", power);
-        telemetry.update();
-
-        // code to power scoop
-        scoopM.setPower(-power*POWER_SCOOP);
-    }
-
-    public void shoot(boolean run) {
-        if (run) {
-            // log data
-            telemetry.addData("shoot", "running");
-            telemetry.update();
-
-            shootM.setPower(POWER_SHOOT);
-        }
-        else {
-            // log data
-            telemetry.addData("shoot", "stopped");
-            telemetry.update();
-
-            // stop motor
-            shootM.setPower(0.0);
-        }
-    }
-
-
-    public void sweepAuto(boolean b) {
-        if (b) {
-            //log data
-            telemetry.addData("sweep", "running");
-            sweepM.setPower(POWER_SWEEP);
-        }
-        else{
-            //log data
-            telemetry.addData("sweep", "stopped");
-
-            //stop motor
-            sweepM.setPower(0.0);
         }
     }
 }
