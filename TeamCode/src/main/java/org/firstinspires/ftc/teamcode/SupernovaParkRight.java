@@ -16,11 +16,11 @@ public class SupernovaParkRight extends LinearOpMode {
 
         waitForStart();
         
-        bot.drive(1,1);
+        bot.drive(1, 1);
         sleep(500);
-        bot.drive(1,-1);
+        bot.drive(1, -1);
         sleep(2000);
-        bot.drive(1,1);
+        bot.drive(1, 1);
         sleep(150);
     }
 }
