@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class Supernova {
+public class Rolex {
     private final double METER_TO_ENCODER = 7000;
     private final double EASE_DRIVE = 0.1;
     private final double POWER_DRIVE = 1.0;
@@ -16,16 +16,16 @@ public class Supernova {
 
     private DcMotor leftDrive;
     private DcMotor rightDrive;
-    private Servo leftArm;
-    private Servo rightArm;
+    private Servo claw;
+    private DcMotor lift;
 
     private Telemetry telemetry;
 
     public void init(HardwareMap hardwareMap, Telemetry t) {
         leftDrive = hardwareMap.dcMotor.get("Left");
         rightDrive = hardwareMap.dcMotor.get("Right");
-        leftArm = hardwareMap.servo.get("LeftArm");
-        rightArm = hardwareMap.servo.get("RightArm");
+        claw = hardwareMap.servo.get("claw");
+        lift = hardwareMap.dcMotor.get("lift");
 
         telemetry = t;
 
@@ -91,9 +91,8 @@ public class Supernova {
     }
     
     public void grab(double percent) {
-        telemetry.addData("grab:percentage", percent);
+        telemetry.addData("grab:percent", percent);
         telemetry.update();
-        leftArm.setPosition (percent*CLAW_CLOSE+(1-percent)*CLAW_OPEN);
-        rightArm.setPosition ((1-percent)*CLAW_CLOSE+percent*CLAW_OPEN);
+        claw.setPosition(percent*CLAW_CLOSE+(1-percent)*CLAW_OPEN);
     }
 }
