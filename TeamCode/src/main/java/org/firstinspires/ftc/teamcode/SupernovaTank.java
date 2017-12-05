@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @TeleOp(name = "Supernova Tank", group = "Supernova")
 public class SupernovaTank extends OpMode {
     private Supernova bot = new Supernova();
+    private double lasttime = 0;
+    private float claw = 0;
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -34,8 +36,12 @@ public class SupernovaTank extends OpMode {
      */
     @Override
     public void loop() {
+        double deltatime = time-lasttime;
+
         bot.drive(-gamepad1.left_stick_y, -gamepad1.right_stick_y);
         bot.grab(gamepad2.right_trigger);
+
+        lasttime = time;
     }
 
     /*
