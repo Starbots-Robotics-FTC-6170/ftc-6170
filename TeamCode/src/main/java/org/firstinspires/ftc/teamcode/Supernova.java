@@ -86,14 +86,14 @@ public class Supernova {
 
             // set power based on easing
             leftDrive.setPower(-ease(leftRemaining, EASE_DRIVE)*Math.copySign(leftPower, left));
-            rightDrive.setPower(ease(rightRemaining, EASE_DRIVE)*Math.copySign(rightPower, right));        
+            rightDrive.setPower(ease(rightRemaining, EASE_DRIVE)*Math.copySign(rightPower, right));
         }
     }
-    
+
     public void grab(double percent) {
         telemetry.addData("grab:percentage", percent);
         telemetry.update();
-        leftArm.setPosition (percent*CLAW_CLOSE+(1-percent)*CLAW_OPEN);
-        rightArm.setPosition ((1-percent)*CLAW_CLOSE+percent*CLAW_OPEN);
+        leftArm.setPosition(percent*CLAW_CLOSE+(1-percent)*CLAW_OPEN);
+        rightArm.setPosition((1-percent)*CLAW_CLOSE+percent*CLAW_OPEN);
     }
 }
