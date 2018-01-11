@@ -13,9 +13,11 @@ public class Supernova {
     private final double CLAW_OPEN = 0.0;
     private final double CLAW_CLOSE = 0.4;
     private final double EPSILON = 0.03;
+    private final double POWER_LIFT = 1.0;
 
     private DcMotor leftDrive;
     private DcMotor rightDrive;
+    private DcMotor lift;
     private Servo leftArm;
     private Servo rightArm;
 
@@ -26,6 +28,7 @@ public class Supernova {
         rightDrive = hardwareMap.dcMotor.get("Right");
         leftArm = hardwareMap.servo.get("LeftArm");
         rightArm = hardwareMap.servo.get("RightArm");
+        lift = hardwareMap.dcMotor.get ("LiftClaw");
 
         telemetry = t;
 
@@ -71,7 +74,7 @@ public class Supernova {
         // loop until motors are no longer powered
         while (leftPower != 0.0 || rightPower != 0.0) {
             // get relative position of motors
-            double leftPos = (-leftDrive.getCurrentPosition() - startLeft)/METER_TO_ENCODER;
+            double leftPos = (-leftDrive.getCurrentPosition() - startLeft) / METER_TO_ENCODER;
             double rightPos = (rightDrive.getCurrentPosition() - startRight)/METER_TO_ENCODER;
 
             // get remaining distance for motors
@@ -93,7 +96,17 @@ public class Supernova {
     public void grab(double percent) {
         telemetry.addData("grab:percentage", percent);
         telemetry.update();
-        leftArm.setPosition(percent*CLAW_CLOSE+(1-percent)*CLAW_OPEN);
-        rightArm.setPosition((1-percent)*CLAW_CLOSE+percent*CLAW_OPEN);
+        if (percent > 0.5) {
+            leftArm.setPosition(0.5);
+            rightArm.setPosition(0.0);
+        }
+        else {
+            leftArm.setPosition(0.4);
+            rightArm.setPosition(0.8);
+        }
+    }
+
+    public void lift(double liftclaw) {
+
     }
 }

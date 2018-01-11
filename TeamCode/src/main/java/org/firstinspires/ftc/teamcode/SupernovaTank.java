@@ -8,6 +8,7 @@ public class SupernovaTank extends OpMode {
     private Supernova bot = new Supernova();
     private double lasttime = 0;
     private float claw = 0;
+    private double lift = 0;
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -40,6 +41,7 @@ public class SupernovaTank extends OpMode {
 
         bot.drive(-gamepad1.left_stick_y, -gamepad1.right_stick_y);
         bot.grab(gamepad2.right_trigger);
+        bot.lift(-gamepad2.right_stick_y);
 
         lasttime = time;
     }
