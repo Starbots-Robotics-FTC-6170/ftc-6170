@@ -101,12 +101,11 @@ public class Supernova {
             rightArm.setPosition(0.0);
         }
         else {
-            leftArm.setPosition(0.4);
-            rightArm.setPosition(0.8);
+            leftArm.setPosition(0.0);
+            rightArm.setPosition(0.4);
         }
     }
 
-    public void lift(double liftclaw) {
-
+    public void lift(double power) {
     }
 }

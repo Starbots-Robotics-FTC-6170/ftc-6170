@@ -13,13 +13,7 @@ public class SupernovaAuto extends LinearOpMode {
     @Override
     public void runOpMode() {
         bot.init(hardwareMap, telemetry);
-        bot.grab(100)
 
         waitForStart();
-
-        bot.move(1.1,1.1);
-        bot.move(0.3,-0.3);
-        bot.move(0.1,0.1);
-        bot.grab(0);
     }
 }
