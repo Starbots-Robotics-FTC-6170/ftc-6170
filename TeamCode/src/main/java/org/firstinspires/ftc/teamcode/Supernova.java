@@ -9,15 +9,13 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Supernova {
     private final double METER_TO_ENCODER = 7000;
     private final double EASE_DRIVE = 0.1;
-    private final double POWER_DRIVE = 1.0;
-    private final double CLAW_OPEN = 0.0;
-    private final double CLAW_CLOSE = 0.4;
+    private final double POWER_DRIVE = 0.75;
     private final double EPSILON = 0.03;
-    private final double POWER_LIFT = 1.0;
+    private final double POWER_LIFT = .25;
 
     private DcMotor leftDrive;
     private DcMotor rightDrive;
-    private DcMotor lift;
+    private DcMotor liftMotor;
     private Servo leftArm;
     private Servo rightArm;
 
@@ -26,9 +24,10 @@ public class Supernova {
     public void init(HardwareMap hardwareMap, Telemetry t) {
         leftDrive = hardwareMap.dcMotor.get("Left");
         rightDrive = hardwareMap.dcMotor.get("Right");
-        leftArm = hardwareMap.servo.get("LeftArm");
-        rightArm = hardwareMap.servo.get("RightArm");
-        lift = hardwareMap.dcMotor.get ("LiftClaw");
+        leftArm = hardwareMap.servo.get("LeftClaw");
+        leftArm.setDirection(Servo.Direction.REVERSE);
+        rightArm = hardwareMap.servo.get("RightClaw");
+        liftMotor = hardwareMap.dcMotor.get ("Lift");
 
         telemetry = t;
 
@@ -97,15 +96,16 @@ public class Supernova {
         telemetry.addData("grab:percentage", percent);
         telemetry.update();
         if (percent > 0.5) {
-            leftArm.setPosition(0.5);
-            rightArm.setPosition(0.0);
+            leftArm.setPosition(0.2);
+            rightArm.setPosition(0.8);
         }
         else {
-            leftArm.setPosition(0.0);
+            leftArm.setPosition(0.9);
             rightArm.setPosition(0.4);
         }
     }
 
     public void lift(double power) {
+        liftMotor.setPower(POWER_LIFT*power);
     }
 }

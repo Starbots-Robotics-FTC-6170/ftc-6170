@@ -13,6 +13,7 @@ public class SupernovaRedOnePark extends LinearOpMode{
     @Override
     public void runOpMode() {
         bot.init(hardwareMap, telemetry);
+        bot.grab(100);
 
         waitForStart();
 
