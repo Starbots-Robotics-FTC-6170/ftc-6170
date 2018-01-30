@@ -25,7 +25,7 @@ public class Supernova {
         leftDrive = hardwareMap.dcMotor.get("Left");
         rightDrive = hardwareMap.dcMotor.get("Right");
         leftArm = hardwareMap.servo.get("LeftClaw");
-        leftArm.setDirection(Servo.Direction.REVERSE);
+        leftArm.setDirection(Servo.Direction.FORWARD);
         rightArm = hardwareMap.servo.get("RightClaw");
         liftMotor = hardwareMap.dcMotor.get ("Lift");
 
@@ -96,12 +96,12 @@ public class Supernova {
         telemetry.addData("grab:percentage", percent);
         telemetry.update();
         if (percent > 0.5) {
-            leftArm.setPosition(0.2);
-            rightArm.setPosition(0.8);
+            leftArm.setPosition(0.4);
+            rightArm.setPosition(0.7);
         }
         else {
-            leftArm.setPosition(0.9);
-            rightArm.setPosition(0.4);
+            leftArm.setPosition(1.0);
+            rightArm.setPosition(0.2);
         }
     }
 
